@@ -80,7 +80,7 @@ Example:
 
 ### Blade Fundamentals
 
-Blade allows regular HTML tags and structure.  
+Blade allows regular HTML tags and control flow syntax.  
 
 Special blocks:
 * `@yield('sectionName')` will be placed with any section in the extend-*ing* file marked by `@section('sectionName')...@endsection`.
