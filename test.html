@@ -1,0 +1,181 @@
+<html>
+
+<head>
+    <title>Laravel Notes</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            padding:0;
+            margin:0;
+        }
+        body {
+
+            width: calc(100%-2em);
+            padding: 1em;
+            font-family: 'Source Sans Pro', 'Calibri', 'Helvetica', 'Arial', sans-serif;
+            font-weight: 400;
+
+            background-color: snow;
+            max-width: 725px;
+            margin: auto;
+        }
+        hr {
+            border: none;
+            background-color: lightgrey;
+            height: 0.08em;
+            width: 100%;
+            margin-bottom: 1em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: darkslateblue;
+            /*color: dimgrey;*/
+            padding-bottom: 0.75em;
+            padding-top: 0.25em;
+            font-weight: 600;
+        }
+        h3 {
+            display: inline-block;
+            margin-top: 1em;
+            padding-top: 1em;
+            width: 100%;
+            border-top: 0.08em solid lightgrey;
+        }
+        p {
+            padding:0.2em 0 0.75em 0;
+        }
+        a {
+            color:dodgerblue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul, ol {
+            padding-left: 1.5em;
+        }
+        table {
+            border-collapse: collapse;
+            margin:0.2em 0 0.75em 0;
+        }
+        thead {
+            background-color: whitesmoke;
+            text-align: left;
+        }
+        th, td {
+            border: 1px solid lightgrey;
+            padding: 0.5em
+        }
+        code {
+            display: inline-block;
+            color: firebrick;
+            background-color: seashell;
+            padding: 0.16em 0.5em 0.16em 0.5em;
+            border-radius: 0.20em;
+            border: 1px solid mistyrose;
+        }
+        .editor-colors {
+            color: firebrick;
+            background-color: seashell;
+            padding: 0.16em 0.5em 0.16em 0.5em;
+            border-radius: 0.20em;
+            border: 1px solid mistyrose;
+        }
+        .note {
+            padding: 0.66em;
+            /*background-color: snow;*/
+            box-shadow: inset 0 0 0.5em 0 gainsboro;
+            border-radius: 0.32em;
+            border: 1px solid gainsboro;
+            border-left: 0.20em solid mediumseagreen;
+        }
+        #laravel {
+            color: #e74430;
+            font-weight: 300;
+        }
+        #by-joseph-martin- {
+            font-weight: 400;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1 id="laravel">Laravel</h1>
+    <hr>
+    <h2 id="laravel-5-fundamentals">Laravel 5 Fundamentals</h2>
+    <p>Laravel is an MVC PHP framework. It uses Composer as a package and dependency manager. PHP Artisan is the &#39;make&#39; equivalent.</p>
+    <h3 id="composer">Composer</h3>
+    <p>A package manager for php code.<br>Add and update dependencies.</p>
+    <ul>
+    <li>use <code>require</code> to add</li>
+    <li><p>use <code>update -no--dev</code> in case of warning messages</p>
+    </li>
+    <li><p><a href="http://getcomposer.org">http://getcomposer.org</a></p>
+    <ul>
+    <li><h4 id="download-and-make-global-">Download and make global:</h4>
+    <code>$ curl -sS http://getcomposer.org/installer | php</code><br><code>$ mv composer.phar usr/local/bin/composer</code></li>
+    </ul>
+    </li>
+    </ul>
+    <p>Create project: <code>$ composer create-project laravel/laravel AppFolder</code>  </p>
+    <p><div class="well well-sm">
+    Note: use <code>php -S localhost:9000 -t public</code> to start the server from the project directory.
+    </div></p>
+    <h3 id="routes-controllers-and-views">Routes, Controllers, and Views</h3>
+    <table>
+    <thead>
+    <tr>
+    <th>File</th>
+    <th>Location</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>Routes</td>
+    <td>/app/Http/routes.php</td>
+    </tr>
+    <tr>
+    <td>Controllers</td>
+    <td>/app/Http/Controllers/</td>
+    </tr>
+    <tr>
+    <td>Views</td>
+    <td>/app/resources/views</td>
+    </tr>
+    </tbody>
+    </table>
+    <h4 id="new-page-or-action-workflow-">New &#39;Page&#39; or &#39;Action&#39; Workflow:</h4>
+    <ol>
+    <li><p>Specify URI in Route file<br><code>Route::get(&#39;uri&#39;, &#39;SomeController@method&#39;);</code><br>Example:<br><code>Route::get(&#39;about&#39;, &#39;PagesController@about&#39;);</code></p>
+    </li>
+    <li><p>Add method to controller  </p>
+    <pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>public&nbsp;function&nbsp;method()&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Eloquent&nbsp;actions&nbsp;and&nbsp;variable&nbsp;setup</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;return&nbsp;view(&#39;folder.view&#39;)-&gt;with(&#39;name&#39;,&nbsp;$name);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div></pre><p>Example:<br>Create PagesController: <code>$ php artisan make:controller PagesController</code> (optional flag: <code>--plain</code> to avoid resourceful routing boilerplate).  </p>
+    <ul>
+    <li>Add method:<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>public&nbsp;function&nbsp;about()&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>$name&nbsp;=&nbsp;&#39;John&nbsp;Smith&#39;;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>return&nbsp;view(&#39;pages.about&#39;)-&gt;with(&#39;name&#39;,&nbsp;$name);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//&nbsp;or</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>return&nbsp;view(&#39;pages.about&#39;)-&gt;with([</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>&#39;name&#39;&nbsp;&nbsp;=&gt;&nbsp;&#39;John&#39;,</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&#39;name2&#39;&nbsp;=&gt;&nbsp;&#39;Jane&#39;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>]);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//&nbsp;or</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>$data&nbsp;=&nbsp;[];</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;$data[&#39;name&#39;]&nbsp;&nbsp;=&nbsp;&#39;John&#39;;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;$data[&#39;name2&#39;]&nbsp;=&nbsp;&#39;Jane&#39;;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>return&nbsp;view(&#39;pages.about&#39;,&nbsp;$data);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//&nbsp;or</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>$name&nbsp;=&nbsp;&#39;John&#39;;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;$name2&nbsp;=&nbsp;&#39;Jane&#39;;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>return&nbsp;view(&#39;pages.about&#39;,&nbsp;compact(&#39;name&#39;,&nbsp;&#39;name2&#39;));</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div></pre></li>
+    </ul>
+    </li>
+    <li><p>Add folder/view.blade.php<br>Example:</p>
+    <ul>
+    <li>Create /views/pages/about.blade.php</li>
+    <li>Echo <code>$name</code> with <code>{!! $name !!}</code> or <code>{{ *some escaped data* - use in case of user-submitted data }}</code></li>
+    </ul>
+    </li>
+    </ol>
+    <h3 id="blade-fundamentals">Blade Fundamentals</h3>
+    <p>Blade allows regular HTML tags and structure.  </p>
+    <p>Special blocks:</p>
+    <ul>
+    <li><code>@yield(&#39;sectionName&#39;)</code> will be placed with any section in the extend-<em>ing</em> file marked by <code>@section(&#39;sectionName&#39;)...@endsection</code>.</li>
+    <li>Other tags:<ul>
+    <li><code>@extends(&#39;parent&#39;)</code></li>
+    <li><code>@if (condition)...@else...@endif</code></li>
+    <li><code>@unless</code> (the opposite of <code>@if</code>)</li>
+    <li><code>@foreach($collection as $item)...@forelse...@endforeach</code></li>
+    </ul>
+    </li>
+    </ul>
+    <hr>
+    <h5 id="by-joseph-martin-">By Joseph Martin.</h5>
+
+</body>
+</html>
